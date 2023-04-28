@@ -46,3 +46,10 @@ class ReportResource(Resource):
             return 'REPORTE ELIMINADO', 204
         else:
             return {'message': 'Reporte no encontrado'}, 404
+
+
+class ReportsResource(Resource):
+    def get(self):
+        reports = report_repository.get_all()
+        result = report_schema.dump(reports, many=True)
+        return result, 200
