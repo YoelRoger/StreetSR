@@ -12,6 +12,8 @@ class Report(db.Model):
     reported_by = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     reported_at = db.Column(db.DateTime, default=datetime.utcnow)
     is_resolved = db.Column(db.Boolean, default=False)
+    user = db.relationship("User", foreign_keys=[reported_by], back_populates="reports", uselist=False, single_parent=True)
+
 
     def __repr__(self):
         return f"<Report {self.id}>"
