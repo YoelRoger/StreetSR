@@ -1,0 +1,67 @@
+{%extends "main.html" %}
+
+<!-- Importar el archivo de macros -->
+{% import "macros.html" as macro %}
+
+<!-- Define el contenido -->
+{% block content %}
+  <!-- Contenido -->
+<main>
+	<div class="container my-7 justify-content-center home-menu-centered"><div></div>
+	<h1>Select an Option</h1>
+		<div></div>
+	</div>
+
+	<div class="row justify-content-center text-center">
+	  <div class="col-sm-auto">
+		<!--{% if current_user.admin %}-->
+
+		<div class="card">
+			<a type="button" class="btn btn-sm" data-toggle="tooltip" href="{{url_for('repair.index')}}">
+		  <div class="card-body">
+		<img src="/static/img/repair.jpg" class="rounded-circle" width="250" height="250" class="img-circle">
+			<p class="card-text"></p>
+		  </div>
+             <h3>REPAIRS</h3>
+			</a>
+		</div>
+		  <!--{% endif %}-->
+	  </div>
+
+
+	  <div class="col-sm-auto">
+		<div class="card">
+			<a type="button" class="btn btn-sm" data-toggle="tooltip" href="{{url_for('report.index')}}">
+		  <div class="card-body">
+		<img src="/static/img/report.png" class="rounded-circle" width="250" height="250">
+			<p class="card-text"></p>
+		  </div>
+            <h3>REPORTS</h3>
+			</a>
+		</div>
+	  </div>
+
+
+	  <div class="col-sm-auto">
+		  <!--{% if current_user.admin %}-->
+
+		  <div class="card">
+			  <a type="button" class="btn btn-sm" data-toggle="tooltip" href="{{url_for('user.index')}}">
+		    <div class="card-body">
+		  <img src="/static/img/users2.png" class="rounded" width="250" height="250" class="img-circle">
+			  <p class="card-text"></p>
+
+		    </div>
+               <h3>USERS</h3>
+			  </a>
+		  </div>
+		  <!--{% endif %}-->
+
+	  </div>
+
+
+	</div>
+
+
+</main>
+{% endblock %}
