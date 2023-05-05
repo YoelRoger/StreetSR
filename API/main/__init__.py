@@ -20,6 +20,7 @@ def create_app():
     db.init_app(app)
     ma.init_app(app)
 
+    # endpoints api
     from main.resources import user
     api.add_resource(user.UsersResource, '/users')
     api.add_resource(user.UserResource, '/users/<id>')

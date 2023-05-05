@@ -47,6 +47,7 @@ class UserResource(Resource):
 
 
 class UsersResource(Resource):
+    # Obtener recursoS
 
     def get(self):
         users = user_repository.get_all()
