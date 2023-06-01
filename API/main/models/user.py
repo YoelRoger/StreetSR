@@ -7,24 +7,16 @@ class User(db.Model):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(50), unique=True, nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(128), nullable=False)
-    user_type = db.Column(db.String(50), default=False, nullable=False)
-    # relacion con reportes < user
-    reports = db.relationship("Report", back_populates="user",
-                              primaryjoin="Report.reported_by==User.id", cascade="all, delete-orphan")
-
-    def __repr__(self):
-        return f"<User {self.email}>"
-
-    @property
-    def password(self):
-        raise AttributeError('Password is not a readable attribute.')
-
-    @password.setter
-    def password(self, password):
-        self.password_hash = generate_password_hash(password)
-
-    def verify_password(self, password):
-        return check_password_hash(self.password_hash, password)
+    name = db.Column(db.String(50), nullable=False)
+    email = db.Column(db.String(100), unique=True, nullable=False)
+    dni = db.Column(db.String(20), unique=True, nullable=False)
+    password = db.Column(db.String(100), nullable=False)
+    user_type = db.Column(db.String(20), nullable=False)
+    reports = db.relationship('Report', backref='user', lazy=True)
+    
+    def __init__(self, name, email, dni, password, user_type):
+        self.name = name
+        self.email = email
+        self.dni = dni
+        self.password = password
+        self.user_type = user_type

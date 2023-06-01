@@ -4,12 +4,13 @@ from dotenv import load_dotenv
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from flask_restful import Api
+from flask_jwt_extended import JWTManager
+
 
 db = SQLAlchemy()
 ma = Marshmallow()
 api = Api()
-
-
+jwt = JWTManager()
 def create_app():
     app = Flask(__name__)
     load_dotenv()
@@ -20,12 +21,20 @@ def create_app():
     db.init_app(app)
     ma.init_app(app)
 
-    # endpoints api
-    from main.resources import user
-    api.add_resource(user.UsersResource, '/users')
-    api.add_resource(user.UserResource, '/users/<id>')
-    from main.resources import report
-    api.add_resource(report.ReportsResource, '/users/<id>')
-    api.add_resource(report.ReportResource, '/report')
+    app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
+    app.config['JWT_ACCESS_TOKEN_EXPIRES'] = int(os.getenv('JWT_ACCESS_TOKEN_EXPIRES'))
+    jwt.init_app(app)
+
+    #from main.auth import auth
+    #app.register_blueprint(auth.auth)
+
+    #Importamos los endpoints(resources)
+    from main.resources import user_resource
+
+    api.add_resource(user_resource.UsersResource, '/users')
+    api.add_resource(user_resource.UserResource, '/users/<id>')
+    from main.resources import report_resource
+    api.add_resource(report_resource.ReportsResource, '/reports')
+    api.add_resource(report_resource.ReportResource, '/report/<id>')
 
     return app
