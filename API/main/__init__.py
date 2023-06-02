@@ -34,10 +34,10 @@ def create_app():
     # Importamos los endpoints(resources)
     from main.resources import user_resource
     api.add_resource(user_resource.UsersResource, '/users')
-    api.add_resource(user_resource.UserResource, '/users/<id>')
+    api.add_resource(user_resource.UserResource, '/user/<id>')
     from main.resources import report_resource
     api.add_resource(report_resource.ReportsResource, '/reports')
-    api.add_resource(report_resource.ReportResource, '/report/<id>')
+    api.add_resource(report_resource.ReportResource, '/reports/<id>')
     api.init_app(app)
 
     return app

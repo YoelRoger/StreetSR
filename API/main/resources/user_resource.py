@@ -11,9 +11,9 @@ user_repository = UserRepository()
 
 
 class UserResource(Resource):
-    def get(self, user_id):
+    def get(self, id):
         # buscar el usuario en el repositorio
-        user = user_repository.get_by_id(user_id)
+        user = user_repository.get_by_id(id)
 
         # devolver el usuario encontrado o un mensaje de error si no se encontró
         if user:
