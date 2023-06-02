@@ -130,5 +130,5 @@ dmypy.json
 # PyCharm
 *.idea/
 bin/
-lib64/
+*lib64/
 pyvenv.cfg
