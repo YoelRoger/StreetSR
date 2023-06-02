@@ -20,3 +20,7 @@ class User(db.Model):
         self.dni = dni
         self.password = password
         self.user_type = user_type
+
+    def __repr__(self):
+        return "<Id: %r, Name: %r, Email: %r, DNI: %r, Password: %r, User Type: %r>" % (
+            self.id, self.name, self.email, self.dni, self.password, self.user_type)

@@ -21,3 +21,7 @@ class Report(db.Model):
         self.reported_date = reported_date
         self.resolved = resolved
         self.user_id = user_id
+
+    def __repr__(self):
+        return "<Id: %r, Description: %r, Location: %r, Photo: %r, Reported At: %r, Resolved: %r, User ID: %r>" % (
+            self.id, self.description, self.location, self.photo, self.reported_at, self.resolved, self.user_id)
